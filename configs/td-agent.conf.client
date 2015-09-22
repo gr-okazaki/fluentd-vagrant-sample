@@ -1,0 +1,20 @@
+<source>
+  type tail
+  format apache
+  path /var/log/httpd/access*
+  tag sample.apache.access
+</source>
+
+#<match sample.apache.access>
+#  type file
+#  path /tmp/access.log
+#</match>
+
+<match sample.apache.access>
+  type forward
+  <server>
+    name test-server
+    host 192.168.33.12
+    port 24225
+  </server>
+</match>
